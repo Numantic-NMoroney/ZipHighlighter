@@ -11,7 +11,7 @@ Interactive zip code range selection for the US Contiguous States.
 
 Valid zip codes (to format ``` '.1f' ```) using [pgeocode](https://pypi.org/project/pgeocode/).
 
-Interface with ~80 lines if Python using [streamlit](https://streamlit.io).
+Interface with ~80 lines of Python using [streamlit](https://streamlit.io).
 
 
 
