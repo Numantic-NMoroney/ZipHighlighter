@@ -9,7 +9,7 @@ and
 
 ---
 
-[<img src="images/2409-ziphighlighter-01.jpg" width=400px>](https://ziphighlighter.streamlit.app)
+[<img src="images/2409-ziphighlighter-01.jpeg" width=400px>](https://ziphighlighter.streamlit.app)
 
 ---
 
