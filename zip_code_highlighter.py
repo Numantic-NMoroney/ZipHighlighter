@@ -71,8 +71,9 @@ plt.axis('equal')
 
 
 with col1:
-    with st.spinner('Rendering ...'):
-        st.pyplot(plt.gcf())
+    # with st.spinner('Rendering ...'):
+    #     st.pyplot(plt.gcf())
+    st.pyplot(plt.gcf())
 
     zip_range = str(zips[n1]) + " - " + str(zips[n2])
     st.subheader("Zip Codes : " + zip_range)
