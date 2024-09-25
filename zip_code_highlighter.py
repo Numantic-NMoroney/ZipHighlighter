@@ -71,12 +71,12 @@ plt.axis('equal')
 
 
 with col1:
-    # with st.spinner('Rendering ...'):
-    #     st.pyplot(plt.gcf())
     st.pyplot(plt.gcf())
 
     zip_range = str(zips[n1]) + " - " + str(zips[n2])
     st.subheader("Zip Codes : " + zip_range)
 
     _ = st.slider("Index : ", 0, max_idx, 20000, key='zip_idx')
+
+    st.markdown("[About](https://numanticsolutions.com/#ziphighlighter)")
 
