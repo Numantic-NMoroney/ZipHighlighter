@@ -78,5 +78,5 @@ with col1:
 
     _ = st.slider("Index : ", 0, max_idx, 20000, key='zip_idx')
 
-    st.markdown("[About](https://numanticsolutions.com/#ziphighlighter) — [comments/questions?](https://www.linkedin.com/feed/update/urn:li:share:7244909595695980544/?actorCompanyId=104756822")
+    st.markdown("[About](https://numanticsolutions.com/#ziphighlighter) — [comments/questions?](https://www.linkedin.com/feed/update/urn:li:share:7244909595695980544/?actorCompanyId=104756822)")
 
