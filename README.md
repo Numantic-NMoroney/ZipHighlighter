@@ -1,11 +1,9 @@
 # ZipHighlighter
 Interactive zip code range selection for the US Contiguous States.
 
-[ziphighlighter.streamlit.app](https://ziphighlighter.streamlit.app)
-
-and
-
-[about](https://numanticsolutions.com/#ziphighlighter).
+* [ziphighlighter.streamlit.app](https://ziphighlighter.streamlit.app)
+* [about](https://numanticsolutions.com/#ziphighlighter)
+* [comments / questions/](https://www.linkedin.com/feed/update/urn:li:share:7244909595695980544/?actorCompanyId=104756822)
 
 ---
 
