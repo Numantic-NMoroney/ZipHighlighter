@@ -4,13 +4,10 @@
 #
 
 import time
+from bisect import bisect_left
 import streamlit as st
 import matplotlib.pyplot as plt
 import zipfile
-
-
-if 'zip_idx' not in st.session_state:
-    st.session_state.zip_idx = 20000
 
 zips, xs, ys = [], [], []
 grays, alphas, rgbas = [], [], []
@@ -28,7 +25,8 @@ def load_data():
         for line in lines:
             ts = line.split()
             if (i != 0) and (len(ts) > 0):
-                zips.append(ts[0])
+                zips.append(int(ts[0]))
+                # zips.append(ts[0])
                 xs.append(float(ts[2]))
                 ys.append(float(ts[1]))
                 grays.append(float(ts[0])/110000)
@@ -39,17 +37,36 @@ def load_data():
 
 zips, xs, ys, rgbas = load_data()
 
+max_idx = len(zips)
+half_idx = int(max_idx / 2)
+
+# https://stackoverflow.com/questions/12141150/from-list-of-integers-get-number-closest-to-a-given-value/12141511#12141511
+#
+def closest_index(list_, value):
+    idx = bisect_left(list_, value)
+    if idx == 0:
+        return 0
+    if idx == len(list_):
+        return -1
+    before = list_[idx - 1]
+    after = list_[idx]
+    if after - value < value - before:
+        return idx
+    else:
+        return idx - 1
+
+if 'current_zip' not in st.session_state:
+    st.session_state.current_zip = zips[half_idx]
+
 st.subheader("Zip Highlighter")
 st.text('Highlight a given range of US zip codes using the slider below.')
 
-xc = list(xs)
-yc = list(ys)
-colors = list(rgbas)
+xc, yc, colors = list(xs), list(ys), list(rgbas)
 
-max_idx = len(zips)
 step = 250
-n1 = int(st.session_state.zip_idx) - step
-n2 = int(st.session_state.zip_idx) + step
+zip_idx = closest_index(zips, int(st.session_state.current_zip))
+n1 = int(zip_idx) - step
+n2 = int(zip_idx) + step
 if n1 < 0:
     n1 = 0
 if n2 > (max_idx - 2):
@@ -69,14 +86,15 @@ plt.ylabel('Latitude')
 plt.title('Contiguous US States')
 plt.axis('equal')
 
-
 with col1:
     st.pyplot(plt.gcf())
 
     zip_range = str(zips[n1]) + " - " + str(zips[n2])
     st.subheader("Zip Codes : " + zip_range)
 
-    _ = st.slider("Index : ", 0, max_idx, 20000, key='zip_idx')
+    _ = st.slider("Current Zip : ", 
+                  zips[0], zips[-1], zips[half_idx], 
+                  key='current_zip', label_visibility="hidden")
 
-    st.markdown("[About](https://numanticsolutions.com/#ziphighlighter) — [comments/questions?](https://www.linkedin.com/feed/update/urn:li:share:7244909595695980544/?actorCompanyId=104756822)")
+    st.markdown("[About](https://numanticsolutions.com/#ziphighlighter) — [Source](https://github.com/Numantic-NMoroney/ZipHighlighter) — [Comments/Questions?](https://www.linkedin.com/feed/update/urn:li:share:7244909595695980544/?actorCompanyId=104756822)")
 
