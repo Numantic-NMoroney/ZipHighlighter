@@ -3,7 +3,6 @@
 # MIT License
 #
 
-import time
 from bisect import bisect_left
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -59,6 +58,10 @@ if 'current_zip' not in st.session_state:
 st.subheader("Zip Highlighter")
 st.text('Highlight a given range of US zip codes using the slider below.')
 
+_ = st.slider("Current Zip : ", 
+              zips[0], zips[-1], zips[half_idx], 
+              key='current_zip', label_visibility="hidden")
+
 xc, yc, colors = list(xs), list(ys), list(rgbas)
 
 step = 250
@@ -74,25 +77,20 @@ for i in range(n1,n2):
     xc.append(xs[i])
     yc.append(ys[i])
 
-time.sleep(0.1)     # 0.25
+zip_range = str(zips[n1]) + " - " + str(zips[n2])
+st.markdown("**Zip Codes : " + zip_range + "**")
 
 col1, col2 = st.columns([0.7, 0.3])
 
-plt.scatter(xc, yc, c=colors)
-plt.xlabel('Longitude')
-plt.ylabel('Latitude')
-plt.title('Contiguous US States')
-plt.axis('equal')
-
 with col1:
-    st.pyplot(plt.gcf())
+    plt.scatter(xc, yc, c=colors)
+    plt.xlabel('Longitude')
+    plt.ylabel('Latitude')
+    plt.title('Contiguous US States')
+    plt.axis('equal')
 
-    zip_range = str(zips[n1]) + " - " + str(zips[n2])
-    st.subheader("Zip Codes : " + zip_range)
-
-    _ = st.slider("Current Zip : ", 
-                  zips[0], zips[-1], zips[half_idx], 
-                  key='current_zip', label_visibility="hidden")
+    with st.spinner(""):
+        st.pyplot(plt.gcf())
 
     st.markdown("[About](https://numanticsolutions.com/#ziphighlighter) — [Source](https://github.com/Numantic-NMoroney/ZipHighlighter) — [Comments/Questions?](https://www.linkedin.com/feed/update/urn:li:share:7244909595695980544/?actorCompanyId=104756822)")
 
