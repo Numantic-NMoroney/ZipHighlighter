@@ -26,7 +26,6 @@ def load_data():
             ts = line.split()
             if (i != 0) and (len(ts) > 0):
                 zips.append(int(ts[0]))
-                # zips.append(ts[0])
                 xs.append(float(ts[2]))
                 ys.append(float(ts[1]))
                 grays.append(float(ts[0])/110000)
@@ -36,7 +35,6 @@ def load_data():
     return zips, xs, ys, rgbas
 
 zips, xs, ys, rgbas = load_data()
-
 max_idx = len(zips)
 half_idx = int(max_idx / 2)
 
