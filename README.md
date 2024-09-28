@@ -13,7 +13,7 @@ Interactive zip code range selection for the US Contiguous States.
 
 The valid zip codes (with format ``` '.1f' ```) were generated using [pgeocode](https://pypi.org/project/pgeocode/).
 
-Core interface implemented with ~80 lines of Python using [streamlit](https://streamlit.io).
+Core interface implemented with ~100 lines of Python using [streamlit](https://streamlit.io).
 
 
 
